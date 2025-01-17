@@ -14,10 +14,14 @@ html {
     scroll-behavior: smooth;
 }
 
+html h2 {
+    scroll-behavior: smooth;
+}
+
 /* INICIO HEADER */
 .nav {
-    background: linear-gradient(to bottom right, #00ff00 28%, #ffff00 60%);    
-    height: 65px;
+    background: linear-gradient( #00ff00 50%, #ffff00 30%);    
+    height: 55px;
     width: 100%;
     display: flex;
     position: fixed;
@@ -34,9 +38,9 @@ html {
 
 .fa-solid.fa-bars {
     color: white;
-    font-size: 16px;;
+    font-size: 15px;;
     background-color: rgb(42, 196, 0);
-    padding: 14px;
+    padding: 12px;
     border-radius: 10px;
     cursor: pointer;
     margin-left: 15px;
@@ -45,9 +49,9 @@ html {
 
 .fa-solid.fa-user {
     color: white;
-    font-size: 16px;;
+    font-size: 15px;;
     background-color: rgb(42, 196, 0);
-    padding: 14px;
+    padding: 12px;
     border-radius: 10px;
     cursor: pointer;
     margin-right: 15px;
@@ -60,11 +64,16 @@ html {
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
     height: auto;
-    margin-top: 110px;;
+    margin-top: 90px;
+    cursor: pointer;
+    transition: filter 0.4s ease;
 }
 
+.logo:hover {
+    filter: brightness(0.6); 
+}
 /* Menu Lateral Esquerdo */
 .sidebar {
     height: 100%;
@@ -88,7 +97,7 @@ html {
 .logo-menu {
     margin: 0;
     padding: 0;
-    width: 150px;
+    width: 140px;
     height: auto;
 }
 
@@ -101,12 +110,13 @@ html {
 .sidebar ul li a {
     color: white;
     background-color: #ffffff5a;
-    margin-top: 4px;
+    margin-top: 1px;
     margin-left: 5px;
     margin-right: 5px;
     padding: 8px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
     display: block;
     transition: 0.3s ease;
     text-align: center;
@@ -119,12 +129,12 @@ html {
 
 /* Menu Lateral Direito */
 .sidebar-right {
-    height: 25%;
+    height: 180px;
     width: 0; 
     position: fixed;
     top: 0;
     right: 0; 
-    background-color: #008600; 
+    background-color: #232323; 
     overflow-x: hidden; 
     transition: 0.3s ease; 
     z-index: 100; 
@@ -135,6 +145,7 @@ html {
 
 .sidebar-right .logo-menu {
     margin: 0;
+    margin-top: 10px;
     padding: 0;
     width: 90px;
     height: auto;
@@ -143,18 +154,19 @@ html {
 .sidebar-right ul {
     list-style-type: none;
     padding: 0;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .sidebar-right ul li a {
     color: white;
     background-color: #ffffff5a; 
-    margin-top: 4px;
+    margin-top: 1px;
     margin-left: 7px;
-    margin-right: 7px;
+    margin-right: 10px;
     padding: 5px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
     display: block;
     transition: 0.3s ease; 
     text-align: center;
@@ -176,7 +188,7 @@ html {
 footer {
     width: 100%;
     background-color: #181818;
-    padding: 40px 0;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -193,21 +205,241 @@ footer p {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin-top: 50px;
     margin-bottom: 30px;
+    gap: 250px;
 }
 
 .logo-footer {
     width: 150px;
     height: auto;
-    margin-right: 200px;
+    cursor: pointer;
+    transition: filter 0.4s ease; /* Adiciona uma transição suave */
+}
+
+.logo-footer:hover {
+    filter: brightness(0.4); /* Escurece a imagem ao passar o mouse */
 }
 
 .logo-mycoding {
     width: 110px;
     height: auto;
+    cursor: pointer;
+    transition: filter 0.4s ease; /* Adiciona uma transição suave */
 }
 
+.logo-mycoding:hover {
+    filter: brightness(0.4); /* Escurece a imagem ao passar o mouse */
+}
 /* FIM RODAPÉ */
 
+/* INICIO MODAL LOGIN */
+/* O Modal (inicialmente escondido) */
+.modal-login {
+    display: none;
+    position: fixed;
+    z-index: 10; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-login-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 30%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.div-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-login h2 {
+    color: white;
+    margin-bottom: 10px;
+    font-weight: bold;
+} 
+
+.div-login input {
+    width: 300px;
+    margin: 10px;
+}
+
+.ant-input::placeholder {
+    color: #666;
+}
+
+.div-btn {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.btn-login {
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 80px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px; 
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-login:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.btn-recuperar {
+    margin-top: 10px;
+    width: 110px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px; 
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-recuperar:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.close-login {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-login:hover,
+.close-login:focus {
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL LOGIN */
 
 
+/* O Modal (inicialmente escondido) */
+.modal-cadastro {
+    display: none;
+    position: fixed;
+    z-index: 10; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-cadastro-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 49%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.div-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}   
+
+.div-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-cadastro h2 {
+    color: white;
+    margin-bottom: 10px;
+    font-weight: bold;
+} 
+
+.div-cadastro input {
+    width: 300px;
+    margin: 10px;
+}
+
+.ant-input::placeholder {
+    color: #666;
+}
+
+.div-btn {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-left: 10px;
+}
+
+.btn-cadastro {
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px; 
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-cadastro:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.btn-recuperar {
+    margin-top: 10px;
+    width: 110px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px; 
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-recuperar:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.close-cadastro {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-cadastro:hover,
+.close-cadastro:focus {
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL LOGIN */

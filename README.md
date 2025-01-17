@@ -1,6 +1,6 @@
 ## Brazuka Skins em desenvolvimento...
 
-- Java <br>
+- Java
 - Spring Boot
 - Spring Data JPA
 - Thymeleaf

@@ -21,16 +21,16 @@
 
     <!-- Ant Design Componentes UI -->
     <link href="https://cdn.jsdelivr.net/npm/antd@4.18.6/dist/antd.min.css" rel="stylesheet">
-
+    
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="/static/css/index.css">
 
-    <title>Brazuka Skins</title>
+    <title>Calcular Inventário</title>
 </head>
 
 <body>
-    <div id="inicio"></div>
-    
+    <div id="calcular"></div>
+
     <!--INICIO HEADER-->
     <nav class="nav">
         <div class="div-nav">
@@ -39,7 +39,7 @@
             </div>
 
             <div>
-                <a href="#inicio">
+                <a href="#calcular">
                     <img src="/static/images/logo.png" alt="Logo da Brazuka Skins" class="logo">
                 </a>
             </div>
@@ -56,9 +56,9 @@
             </div>
 
             <ul>
-                <li><a href="#inicio">Início</a></li>
+                <li><a href="/index">Início</a></li>
                 <li><a href="/vender">Vender</a></li>
-                <li><a href="/calcular">Calcular</a></li>
+                <li><a href="#calcular">Calcular</a></li>
                 <li><a href="/sobre">Sobre</a></li>
                 <li><a href="/ajuda">Ajuda</a></li>
             </ul>
@@ -77,64 +77,6 @@
         </div>
     </nav>
     <!--FIM HEADER-->
-
-    <!-- INICIO MODAL LOGIN -->
-    <div id="loginModal" class="modal-login">
-        <div class="modal-login-content">
-            <span class="close-login" onclick="closeModal()">&times;</span>
-
-            <form action="/entrar" method="POST">            
-                <div class="div-login">
-                    <h2>Login</h2>
-
-                    <input type="email" class="ant-input" id="email-login" name="email" placeholder="E-mail" required>
-
-                    <input type="password" class="ant-input" id="password-login" name="password" placeholder="Senha" required>
-
-                    <div class="div-btn">
-                        <button class="btn-recuperar" type="button" >Recuperar</button>
-                        <button class="btn-login" type="submit" >Entrar</button>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
-    <!-- FIM MODAL LOGIN -->
-
-    <!-- INICIO MODAL CADASTRO -->
-    <div id="cadastroModal" class="modal-cadastro">
-        <div class="modal-cadastro-content">
-            <span class="close-cadastro" onclick="closeModalCadastro()">&times;</span>
-
-            <form action="/entrar" method="POST">            
-                <div class="div-cadastro">
-                    <h2>Cadastro</h2>
-
-                    <div class="div-input">
-                        <input type="text" class="ant-input" id="nome-cadastro" name="nome" placeholder="Nome" required>
-                        <input type="text" class="ant-input" id="sobrenome-cadastro" name="sobrenome" placeholder="Sobrenome" required>
-                    </div>
-
-                    <div class="div-input">
-                        <input type="tel" class="ant-input" id="telefone-cadastro" name="telefone" placeholder="Telefone" required>
-                        <input type="email" class="ant-input" id="email-cadastro" name="email" placeholder="E-mail" required>
-                    </div>
-
-                    <div class="div-input">
-                        <input type="password" class="ant-input" id="senha" name="password" placeholder="Senha" required>
-                        <input type="password" class="ant-input" id="repetir-senha" name="password" placeholder="Repetir Senha" required>
-                    </div>        
-
-                    <div class="div-btn">
-                        <button class="btn-cadastro" type="submit">Cadastrar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- FIM MODAL CADASTRO -->
-
 
     <br> <br>
     <br> <br>
@@ -156,7 +98,7 @@
     <!--INICIO RODAPÉ -->
     <footer>
         <div class="div-footer">
-            <a href="#inicio">
+            <a href="#calcular">
                 <img src="/static/images/logo.png" alt="Logo da Brazuka Skins" class="logo-footer">
             </a>
             <a href="https://mycodinghub.tech/" target="_blank">
