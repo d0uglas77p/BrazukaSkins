@@ -42,9 +42,7 @@ function openModal() {
 function closeModal() {
     document.getElementById("loginModal").style.display = "none";
 }
-
 /* MODAL LOGIN */
-
 
 /* MODAL CADASTRO */
 function openModalCadastro() {

@@ -83,7 +83,7 @@
         <div class="modal-login-content">
             <span class="close-login" onclick="closeModal()">&times;</span>
 
-            <form action="/entrar" method="POST">            
+            <form action="/entrar" method="POST">
                 <div class="div-login">
                     <h2>Login</h2>
 
@@ -92,8 +92,8 @@
                     <input type="password" class="ant-input" id="password-login" name="password" placeholder="Senha" required>
 
                     <div class="div-btn">
-                        <button class="btn-recuperar" type="button" >Recuperar</button>
-                        <button class="btn-login" type="submit" >Entrar</button>
+                        <button class="btn-recuperar" type="button" onclick="abrirModalRecuperarSenha()">Recuperar</button>
+                        <button class="btn-login" type="submit">Entrar</button>
                     </div>
                 </div>
             </form>
@@ -107,7 +107,7 @@
         <div class="modal-cadastro-content">
             <span class="close-cadastro" onclick="closeModalCadastro()">&times;</span>
 
-            <form action="/entrar" method="POST">            
+            <form th:action="@{/usuarios/cadastrar}" th:method="post">
                 <div class="div-cadastro">
                     <h2>Cadastro</h2>
 
@@ -123,8 +123,8 @@
 
                     <div class="div-input">
                         <input type="password" class="ant-input" id="senha" name="password" placeholder="Senha" required>
-                        <input type="password" class="ant-input" id="repetir-senha" name="password" placeholder="Repetir Senha" required>
-                    </div>        
+                        <input type="password" class="ant-input" id="repetir-senha" name="confirmPassword" placeholder="Repetir Senha" required>
+                    </div>
 
                     <div class="div-btn">
                         <button class="btn-cadastro" type="submit">Cadastrar</button>
@@ -134,7 +134,6 @@
         </div>
     </div>
     <!-- FIM MODAL CADASTRO -->
-
 
     <br> <br>
     <br> <br>
