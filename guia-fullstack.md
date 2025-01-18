@@ -1,12 +1,12 @@
+                                                       ALPHA*
+-----------------------------------------------------------------------------------------------------------------------------
                       ESSE É UM DOCUMENTO DE ANOTAÇÃO QUE IRÁ SERVIR COMO GUIA PARA CRIAR PROJETOS
                                    SPRING + THYMELEAF + HTML + CSS + JAVASCRIPT + MYSQL
 -----------------------------------------------------------------------------------------------------------------------------
                                                     BRAZUKA SKINS
-=============================================================================================================================
-
-=============================== CONFIGURAÇÕES ===============================
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
+                                                    CONFIGURAÇÕES 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 1. Criar o projeto no spring initializr:
 
@@ -33,112 +33,110 @@
 
    Gerar o arquivo, extrair e abrir no Intellij
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 2. No arquivo POM, implementar:
 
-    <!-- Para implantar no Tomcat EXTERNO-->
-   	<dependency>
-   		<groupId>org.springframework.boot</groupId>
-   		<artifactId>spring-boot-starter-tomcat</artifactId>
-   		<scope>provided</scope>
-   	</dependency>
-
-   COMENTAR O TOMCAT (funcionamento do Devtools):
-    <!--<dependency>
-   <groupId>org.springframework.boot</groupId>
-   <artifactId>spring-boot-starter-tomcat</artifactId>
-   <scope>provided</scope>
-   </dependency>-->
+        <!-- Para implantar no Tomcat EXTERNO-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    
+    COMENTAR O TOMCAT (funcionamento do Devtools):
+   
+        <!--<dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <scope>provided</scope>
+        </dependency>-->
 
    No plugin Maven: clean/install
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 3. Na classe Main extends SpringBootServletInitializer
    Empacotar a aplicação como um WAR e implantá-la em um servidor de aplicação externo
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 4. Criar um pacote -> config -> criar classe -> ResourceConfig -> implements WebMvcConfigurer
    Configura o Spring para acessar todas os arquivos da Static
 
-   Para que os arquivos nos html tenham o /static no src:
-   <img src="/static/images/logo.png">
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+   Para que os arquivos nos html tenham o /static no src: <br>
+  
+       img src="/static/images/logo.png"
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 5. ESTRUTURA DO PROJETO:
-   java
-   brazukaskins
-   config
-   Classe: ResourceConfig
-   controller
-   Classe: NavegacaoController
-   Classe: UsuarioController
-   model
-   Classe: Usuario
-   repository
-   Classe: UsuarioRepository
-   service
-   Classe: UsuarioService
-   Classe Main: BrazukaSkinsApplication
-
-   resources
-   static
-   css
-   index.css
-   fontawesome
-   Arquivos do Font Awesome para icones
-   images
-   imagens.png
-   js
-   index.js
-   templates
-   index.html
-   Outras paginas
-   Arquivo de Configuração: application.properties
+   
+         java
+           brazukaskins
+             config
+               Classe: ResourceConfig
+             controller
+               Classe: NavegacaoController
+               Classe: UsuarioController
+             model
+               Classe: Usuario
+             repository
+               Classe: UsuarioRepository
+             service
+               Classe: UsuarioService
+             Classe Main: BrazukaSkinsApplication
+    
+          resources
+             static
+               css
+                 index.css
+               fontawesome
+                 Arquivos do Font Awesome para icones
+             images
+               imagens.png
+             js
+               index.js
+             templates
+               index.html
+               Outras paginas
+             Arquivo de Configuração: application.properties
 
 OBS: PARA CRIAR AS INTERFACES/FRONT-END
 Abrir a pasta resources no VSCODE
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 6. CONFIGURAÇÕES NO application.properties*
 
-   # Nome da aplicação
-   spring.application.name=BrazukaSkins
+       #Nome da aplicação
+       spring.application.name=BrazukaSkins
+    
+       #Desabilita o cache do Thymeleaf para desenvolvimento (ótimo para mudanças rápidas)
+       spring.thymeleaf.cache=false
+    
+       #Configurações do Spring DevTools para facilitar o desenvolvimento
+       spring.devtools.restart.enabled=true
+       spring.devtools.livereload.enabled=true
+    
+       #Configuração de conexão com o banco de dados MySQL
+       spring.datasource.url=jdbc:mysql://localhost:3306/seu_banco?useSSL=false&serverTimezone=UTC
+       spring.datasource.username=seu_usuario
+       spring.datasource.password=sua_senha
+       spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+    
+       #Configuração JPA (Hibernate)
+       spring.jpa.hibernate.ddl-auto=update
+       spring.jpa.show-sql=true
 
-   # Desabilita o cache do Thymeleaf para desenvolvimento (ótimo para mudanças rápidas)
-   spring.thymeleaf.cache=false
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                      HTML 
 
-   # Configurações do Spring DevTools para facilitar o desenvolvimento
-   spring.devtools.restart.enabled=true
-   spring.devtools.livereload.enabled=true
-
-   # Configuração de conexão com o banco de dados MySQL
-   spring.datasource.url=jdbc:mysql://localhost:3306/seu_banco?useSSL=false&serverTimezone=UTC
-   spring.datasource.username=seu_usuario
-   spring.datasource.password=sua_senha
-   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-   # Configuração JPA (Hibernate)
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-=============================== CONFIGURAÇÕES ===============================
-
-=================================== HTML ====================================
-
-Abaixo será listado linhas de códigos necessárias para o funcionamen da estrutura HTML
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Abaixo será listado linhas de códigos necessárias para o funcionamen da estrutura HTML
 
 <!-- O Spring Boot usa o Thymeleaf para renderizar as views. -->
 <html xmlns:th="http://www.thymeleaf.org">
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 <head>
     <!-- Font Awesome para o ícone de menu -->
@@ -153,10 +151,10 @@ Abaixo será listado linhas de códigos necessárias para o funcionamen da estru
     <title>Brazuka Skins</title>
 </head>
 
-NO FINAL DO <body>
+NO FINAL DO body
 <script src="/static/js/index.js"></script>
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 OBS: ACIMA NAS CONFIGURAÇÕES, FOI INCLUIDO UMA CLASSE PARA CONFIGURAR OS ARQUIVOS NAS PASTAS STATIC.
 O SPRING BOOT AUTOMATICAMENTE JÁ RECONHECE OS ARQUIVOS NAS PASTAS STATIC, O QUE PARA ACESSAR NO INTELLIJ OS ARQUIVOS DO FRONT SERIA ASSIM:
