@@ -71,3 +71,21 @@ window.onclick = function (event) {
     }
 };
 /* FECHAR OS MODAIS */
+
+/* FORMATAR MASCARA DO TELEFONE */
+function formatarTelefone(input) {
+    var telefone = input.value.replace(/\D/g, '');
+    telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    input.value = telefone;
+}
+
+document.getElementById("telefone-cadastro").addEventListener("input", function () {
+    var telefone = this.value.replace(/\D/g, '');
+
+    if (telefone.length !== 11) {
+        this.setCustomValidity("Número inválido.");
+    } else {
+        this.setCustomValidity("");
+    }
+});
+/* FORMATAR MASCARA DO TELEFONE */
