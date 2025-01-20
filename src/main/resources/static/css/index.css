@@ -516,3 +516,27 @@ footer p {
     cursor: pointer;
 }
 /* FIM MODAL CADASTRO */
+
+/* INICIO RECUPERAR SENHA */
+.conteiner-recuperar {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-recuperar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.div-recuperar h2 {
+    color: white;
+    font-weight: bold;
+}
+/* FIM RECUPERAR SENHA */

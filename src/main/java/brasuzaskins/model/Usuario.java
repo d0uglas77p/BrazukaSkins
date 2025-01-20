@@ -3,6 +3,8 @@ package brasuzaskins.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 public class Usuario {
@@ -19,6 +21,9 @@ public class Usuario {
 
     @Transient
     private String confirmPassword;
+
+    private String tokenRecuperacao;
+    private LocalDateTime tokenExpiracao;
 
     public Long getId() {
         return id;
@@ -74,5 +79,21 @@ public class Usuario {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getTokenRecuperacao() {
+        return tokenRecuperacao;
+    }
+
+    public void setTokenRecuperacao(String tokenRecuperacao) {
+        this.tokenRecuperacao = tokenRecuperacao;
+    }
+
+    public LocalDateTime getTokenExpiracao() {
+        return tokenExpiracao;
+    }
+
+    public void setTokenExpiracao(LocalDateTime tokenExpiracao) {
+        this.tokenExpiracao = tokenExpiracao;
     }
 }

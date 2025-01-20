@@ -9,7 +9,6 @@ document.getElementById("menu-btn").onclick = function() {
     }
 };
 
-// Função para fechar o menu lateral quando o mouse sair
 document.getElementById("sidebar").onmouseleave = function() {
     var sidebar = document.getElementById("sidebar");
     sidebar.style.width = "0";  
@@ -72,17 +71,14 @@ window.onclick = function (event) {
     const recuperarModal = document.getElementById("recuperarModal");
     const cadastroModal = document.getElementById("cadastroModal");
 
-    // Fecha o modal de login se o clique for fora dele
     if (event.target === loginModal) {
         closeModal();
     }
 
-    // Fecha o modal de recuperar se o clique for fora dele
     if (event.target === recuperarModal) {
         closeModalRecuperar();
     }
 
-    // Fecha o modal de cadastro se o clique for fora dele
     if (event.target === cadastroModal) {
         closeModalCadastro();
     }
