@@ -335,6 +335,98 @@ footer p {
 /* FIM MODAL LOGIN */
 
 
+/* INICIO MODAL RECUPERAR */
+/* O Modal (inicialmente escondido) */
+.modal-recuperar {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-recuperar-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 30%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.modal-recuperar .div-recuperar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.modal-recuperar .div-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-recuperar h2 {
+    color: white;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.div-recuperar input {
+    width: 300px;
+    margin: 10px;
+}
+
+.div-recuperar .ant-input::placeholder {
+    color: #666;
+}
+
+.div-recuperar .div-btn {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-left: 10px;
+}
+
+.div-recuperar .btn-recuperar {
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 150px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.div-recuperar .btn-recuperar:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.close-recuperar {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-recuperar:hover,
+.close-recuperar:focus {
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL RECUPERAR */
+
+/* INICIO MODAL CADASTRO */
 /* O Modal (inicialmente escondido) */
 .modal-cadastro {
     display: none;
@@ -412,25 +504,6 @@ footer p {
     border-color: #005e00;
 }
 
-.btn-recuperar {
-    margin-top: 10px;
-    width: 110px;
-    height: 35px;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 20px; 
-    color: white;
-    background-color: #00ff00;
-    border: 2px solid #00ff00; 
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
-}
-
-.btn-recuperar:hover {
-    background-color: #009900;
-    border-color: #005e00;
-}
-
 .close-cadastro {
     color: white;
     float: right;
@@ -442,4 +515,4 @@ footer p {
     color: black;
     cursor: pointer;
 }
-/* FIM MODAL LOGIN */
+/* FIM MODAL CADASTRO */

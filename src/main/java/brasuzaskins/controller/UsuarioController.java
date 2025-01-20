@@ -39,4 +39,26 @@ public class UsuarioController {
             return "redirect:/index";
         }
     }
+
+    @PostMapping("/recuperar")
+    public String recuperar(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
+        try {
+            if (!usuarioService.isEmailCadastrado(email)) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Esse e-mail não está cadastrado!");
+                return "redirect:/index";
+            }
+
+            // Envia o e-mail de recuperação
+            usuarioService.enviarEmailRecuperacao(email, "EMAIL ESTÁ CADASTRADO");
+
+            // Mensagem de sucesso
+            redirectAttributes.addFlashAttribute("successMessage", "Um e-mail foi enviado com as instruções.");
+            return "redirect:/index";
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao processar a solicitação: " + e.getMessage());
+            return "redirect:/index";
+        }
+    }
+
 }

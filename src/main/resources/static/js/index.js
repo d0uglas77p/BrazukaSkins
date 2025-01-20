@@ -44,6 +44,17 @@ function closeModal() {
 }
 /* MODAL LOGIN */
 
+/* MODAL RECUPERAR */
+function openModalRecuperar() {
+    closeModal();
+    document.getElementById("recuperarModal").style.display = "block";
+}
+
+function closeModalRecuperar() {
+    document.getElementById("recuperarModal").style.display = "none";
+}
+/* MODAL RECUPERAR */
+
 /* MODAL CADASTRO */
 function openModalCadastro() {
     document.getElementById("cadastroModal").style.display = "block";
@@ -52,17 +63,23 @@ function openModalCadastro() {
 function closeModalCadastro() {
     document.getElementById("cadastroModal").style.display = "none";
 }
-
 /* MODAL CADASTRO */
+
 
 /* FECHAR OS MODAIS */
 window.onclick = function (event) {
     const loginModal = document.getElementById("loginModal");
+    const recuperarModal = document.getElementById("recuperarModal");
     const cadastroModal = document.getElementById("cadastroModal");
 
     // Fecha o modal de login se o clique for fora dele
     if (event.target === loginModal) {
         closeModal();
+    }
+
+    // Fecha o modal de recuperar se o clique for fora dele
+    if (event.target === recuperarModal) {
+        closeModalRecuperar();
     }
 
     // Fecha o modal de cadastro se o clique for fora dele

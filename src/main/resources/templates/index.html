@@ -94,7 +94,7 @@
                     <input type="password" class="ant-input" id="password-login" name="password" placeholder="Senha" required>
 
                     <div class="div-btn">
-                        <button class="btn-recuperar" type="button" onclick="abrirModalRecuperarSenha()">Recuperar</button>
+                        <button class="btn-recuperar" type="button" onclick="openModalRecuperar()">Recuperar</button>
                         <button class="btn-login" type="submit">Entrar</button>
                     </div>
                 </div>
@@ -103,6 +103,30 @@
         </div>
     </div>
     <!-- FIM MODAL LOGIN -->
+
+    <!-- INICIO MODAL RECUPERAR SENHA -->
+    <div id="recuperarModal" class="modal-recuperar">
+        <div class="modal-recuperar-content">
+            <span class="close-recuperar" onclick="closeModalRecuperar()">&times;</span>
+
+            <form id="recuperarForm" action="/recuperar" method="post">
+                <div class="div-recuperar">
+                    <h2>Recuperar Senha</h2>
+
+                    <div class="div-input">
+                        <input type="email" class="ant-input" id="email-recuperar" name="email" placeholder="E-mail"
+                               pattern="^(?!.*\.\.)([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$" required
+                               title="E-mail inválido">
+                    </div>
+
+                    <div class="div-btn">
+                        <button class="btn-recuperar" type="submit">Recuperar Senha</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- FIM MODAL RECUPERAR SENHA -->
 
     <!-- INICIO MODAL CADASTRO -->
     <div id="cadastroModal" class="modal-cadastro">
