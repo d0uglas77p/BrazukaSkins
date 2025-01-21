@@ -74,6 +74,21 @@ html h2 {
 .logo:hover {
     filter: brightness(0.6); 
 }
+
+.fa-solid.fa-right-to-bracket {
+    color: white;
+    font-size: 15px;;
+    background-color: rgb(42, 196, 0);
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.fa-solid.fa-right-to-bracket:hover {
+    filter: brightness(0.7);
+}
 /* Menu Lateral Esquerdo */
 .sidebar {
     height: 100%;
