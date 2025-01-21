@@ -147,4 +147,31 @@ public class UsuarioService {
             super(message);
         }
     }
+
+    // METODO PARA AUTENTICAR O USUÁRIO
+    public Usuario autenticarUsuario(String email, String senha) {
+
+        // BUSCA O USUÁRIO PELO EMAIL
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        // SE O USUÁRIO NÃO EXISTIR
+        if (usuario == null) {
+            throw new AutenticacaoException("E-mail ou senha incorretos");
+        }
+
+        // VERIFICA SE A SENHA CORRESPONDE À SENHA ARMAZENADA NO BANCO
+        if (!BCrypt.checkpw(senha, usuario.getPassword())) {
+            throw new AutenticacaoException("E-mail ou senha incorretos");
+        }
+
+        // RETORNA O USUÁRIO AUTENTICADO
+        return usuario;
+    }
+
+    // EXCEÇÃO PARA ERROS DE AUTENTICAÇÃO
+    public static class AutenticacaoException extends RuntimeException {
+        public AutenticacaoException(String message) {
+            super(message);
+        }
+    }
 }

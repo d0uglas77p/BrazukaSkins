@@ -2,6 +2,7 @@ package brasuzaskins.controller;
 
 import brasuzaskins.model.Usuario;
 import brasuzaskins.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -99,6 +100,31 @@ public class UsuarioController {
             // ERRO
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao atualizar a senha: " + e.getMessage());
+            return "redirect:/index";
+        }
+    }
+
+    @PostMapping("/entrar")
+    public String login(@RequestParam("email") String email,
+                        @RequestParam("password") String password,
+                        HttpSession session,
+                        RedirectAttributes redirectAttributes) {
+        try {
+            // Autentica o usuário
+            Usuario usuario = usuarioService.autenticarUsuario(email, password);
+
+            // Armazena o usuário na sessão
+            session.setAttribute("usuarioLogado", usuario);
+
+            redirectAttributes.addFlashAttribute("successMessage", "Login efetuado com sucesso.");
+
+            // Redireciona para a página do usuário logado
+            return "redirect:/logado";
+        } catch (UsuarioService.AutenticacaoException e) {
+            // Caso a autenticação falhe, adiciona mensagem de erro
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+            // Redireciona para a página de login
             return "redirect:/index";
         }
     }

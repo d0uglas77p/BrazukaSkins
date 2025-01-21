@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    // METODO PARA VERIFICAR SE UM EMAIL JÁ ESTÁ CADASTRADO
     boolean existsByEmail(String email);
 
-    // METODO PARA VERIFICAR SE UM TELEFONE JÁ ESTÁ CADASTRADO
     boolean existsByTelefone(String telefone);
+
+    Usuario findByEmail(String email);
 
     // METODO PARA SALVAR O TOKEN DE RECUPERAÇÃO DE SENHA NO BANCO DE DADOS
     @Modifying
