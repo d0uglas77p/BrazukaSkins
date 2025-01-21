@@ -104,27 +104,25 @@ public class UsuarioController {
         }
     }
 
+    // METODO QUE REDIRECIONA QUANDO O FORMULARARIO DE LOGIN FOR ENVIADO
     @PostMapping("/entrar")
     public String login(@RequestParam("email") String email,
                         @RequestParam("password") String password,
                         HttpSession session,
                         RedirectAttributes redirectAttributes) {
         try {
-            // Autentica o usuário
+            // AUTENTICA O USUÁRIO COM O SERVIÇO DE AUTENTICAÇÃO
             Usuario usuario = usuarioService.autenticarUsuario(email, password);
 
-            // Armazena o usuário na sessão
+            // ARMAZENA O USUÁRIO AUTENTICADO NA SESSÃO
             session.setAttribute("usuarioLogado", usuario);
 
             redirectAttributes.addFlashAttribute("successMessage", "Login efetuado com sucesso.");
 
-            // Redireciona para a página do usuário logado
             return "redirect:/logado";
         } catch (UsuarioService.AutenticacaoException e) {
-            // Caso a autenticação falhe, adiciona mensagem de erro
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
-            // Redireciona para a página de login
             return "redirect:/index";
         }
     }
