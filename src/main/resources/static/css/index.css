@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif   ;
+    font-family: 'Roboto', sans-serif;
     background-color: black;
 }
 
@@ -176,29 +176,14 @@ html {
 /* FIM HEADER */
 
 /* INICIO RODAPÉ */
-.div-fundo {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient( #00ff00 50%, #ffff00 30%);
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
+.footer-conteiner {
     width: 100%;
     background-color: #181818;
-    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
-
-footer p {
-    color: white;
     text-align: center;
 }
 
@@ -206,10 +191,17 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.div-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    gap: 250px;
+    gap: 280px;
 }
 
 .logo-footer {
@@ -232,6 +224,17 @@ footer p {
 
 .logo-mycoding:hover {
     filter: brightness(0.4);
+}
+
+.footer-conteiner p {
+    color: white;
+    text-align: center;
+}
+
+.div-fundo {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient( #00ff00 50%, #ffff00 30%);
 }
 /* FIM RODAPÉ */
 
