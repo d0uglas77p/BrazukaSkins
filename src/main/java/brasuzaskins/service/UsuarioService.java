@@ -174,4 +174,33 @@ public class UsuarioService {
             super(message);
         }
     }
+
+    @Transactional
+    public Usuario atualizarPerfil(Usuario usuarioAtualizado, Usuario usuarioLogado) {
+        if (!usuarioLogado.getId().equals(usuarioAtualizado.getId())) {
+            throw new IllegalArgumentException("Usuário não autorizado a alterar esses dados.");
+        }
+
+        usuarioLogado.setNome(usuarioAtualizado.getNome());
+        usuarioLogado.setSobrenome(usuarioAtualizado.getSobrenome());
+        usuarioLogado.setTelefone(usuarioAtualizado.getTelefone());
+        usuarioLogado.setEmail(usuarioAtualizado.getEmail());
+
+        if (usuarioAtualizado.getPassword() != null && !usuarioAtualizado.getPassword().isEmpty()) {
+            usuarioLogado.setPassword(BCrypt.hashpw(usuarioAtualizado.getPassword(), BCrypt.gensalt()));
+        }
+
+        return usuarioRepository.save(usuarioLogado);
+    }
+
+    @Transactional
+    public void excluirUsuario(Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepository.findById(usuario.getId()).orElse(null);
+
+        if (usuarioExistente == null) {
+            throw new IllegalArgumentException("Usuário não encontrado.");
+        }
+
+        usuarioRepository.delete(usuarioExistente);
+    }
 }

@@ -3,6 +3,7 @@ package brasuzaskins.controller;
 import brasuzaskins.model.Usuario;
 import brasuzaskins.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -125,5 +126,59 @@ public class UsuarioController {
 
             return "redirect:/index";
         }
+    }
+
+    @PostMapping("/atualizarPerfil")
+    public String atualizarPerfil(@ModelAttribute Usuario usuarioAtualizado,
+                                  HttpSession session,
+                                  RedirectAttributes redirectAttributes) {
+        try {
+            Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+            if (usuarioLogado == null) {
+                redirectAttributes.addFlashAttribute("errorMessage", "Usuário não está logado.");
+                return "redirect:/index";
+            }
+
+            usuarioAtualizado.setId(usuarioLogado.getId());
+
+            Usuario usuarioAtualizadoFinal = usuarioService.atualizarPerfil(usuarioAtualizado, usuarioLogado);
+
+            session.setAttribute("usuarioLogado", usuarioAtualizadoFinal);
+
+            redirectAttributes.addFlashAttribute("successMessage", "Perfil atualizado com sucesso!");
+            return "redirect:/logado";
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao atualizar o perfil: " + e.getMessage());
+            return "redirect:/logado";
+        }
+    }
+
+    @PostMapping("/excluirConta")
+    public String excluirConta(HttpSession session, @RequestParam("password") String senhaInformada, RedirectAttributes redirectAttributes) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+        if (usuario == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Usuário não autenticado.");
+            return "redirect:/logado";
+        }
+
+        if (!BCrypt.checkpw(senhaInformada, usuario.getPassword())) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Senha incorreta.");
+            return "redirect:/logado";
+        }
+
+        try {
+            usuarioService.excluirUsuario(usuario);
+
+            session.removeAttribute("usuarioLogado");
+
+            redirectAttributes.addFlashAttribute("successMessage", "Conta excluída com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir a conta: " + e.getMessage());
+        }
+
+        return "redirect:/index";
     }
 }

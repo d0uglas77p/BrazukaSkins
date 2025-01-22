@@ -35,18 +35,15 @@ public class NavegacaoController {
         }
     }
 
-    // MAPEAMENTO DA PÁGINA DE ÁREA RESTRITA (APÓS LOGIN)
     @GetMapping("/logado")
     public String logado(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
-        // VERIFICA SE O USUÁRIO ESTÁ LOGADO
         if (session.getAttribute("usuarioLogado") == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Você precisa fazer login para acessar esta página.");
             return "redirect:/index";
         }
 
-        // ADICIONA O NOME DO USUÁRIO AO MODELO PARA USO NO THYMELEAF
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        model.addAttribute("usuarioNome", usuario.getNome());
+        model.addAttribute("usuario", usuario);
 
         return "logado";
     }
@@ -60,4 +57,5 @@ public class NavegacaoController {
         redirectAttributes.addFlashAttribute("successMessage", "Você saiu da sua conta.");
         return "redirect:/index";
     }
+
 }

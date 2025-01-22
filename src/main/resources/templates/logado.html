@@ -25,6 +25,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- CSS do projeto -->
+    <link href="/static/css/logado.css" rel="stylesheet">
+
+    <!-- CSS do projeto -->
     <link href="/static/css/index.css" rel="stylesheet">
 
     <title>Brazuka Skins</title>
@@ -74,16 +77,133 @@
             </div>
 
             <div class="div-usuarioNome">
-                <span th:text="${usuarioNome}"></span>
+                <span th:text="${usuario.nome}"></span>
             </div>
 
             <ul>
-                <li><a>Perfil</a></li>
+                <li><a href="javascript:void(0);" onclick="openModalPerfil()">Perfil</a></li>
                 <li><a href="/logout">Sair</a></li>
             </ul>
         </div>
     </nav>
     <!--FIM HEADER-->
+
+    <!-- INICIO MODAL PERFIL -->
+    <section>
+        <div id="perfilModal" class="modal-perfil">
+            <div class="modal-perfil-content">
+                <span class="close-perfil" onclick="closeModalPerfil()">&times;</span>
+                <form action="" method="POST">
+                    <div class="div-perfil">
+                        <div class="div-header">
+                            <i class="fa-solid fa-exclamation"></i>
+                            <h2>Perfil</h2>
+                        </div>
+                        <div class="div-info">
+                            <div class="div-avatar-contato">
+                                <div class="avatar"></div>
+                                <div class="info-contato">
+                                    <h2>Zank</h2>
+                                    <p>Douglas Pardim Ferreira</p>
+                                    <p>11977430273</p>
+                                </div>
+                            </div>
+                            <div class="info-steam">
+                                <i class="fa-brands fa-steam"></i>
+                            </div>
+                        </div>
+                        <div class="div-footer-edit">
+                            <button class="editar-perfil" type="button" onclick="openModalEditarPerfil()">Editar Perfil</button>
+                            <div class="div-data">
+                                <p>Registro:</p>
+                                <p>01/05/2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- FIM MODAL PERFIL -->
+
+    <!-- INICIO MODAL EDITAR PERFIL -->
+    <section>
+        <div id="editarPerfilModal" class="modal-editar-perfil">
+            <div class="modal-editar-perfil-content">
+                <span class="close-editar-perfil" onclick="closeModalEditarPerfil()">&times;</span>
+                <form action="/atualizarPerfil" method="POST">
+                    <div class="div-editar-perfil">
+                        <h2>Editar Perfil</h2>
+
+                        <div class="div-input-editar">
+                            <!-- Nome -->
+                            <input type="text" class="ant-input" id="nome-cadastro" name="nome" placeholder="Nome"
+                                   pattern="[A-Za-zÀ-ÿ\s]+" th:value="${usuario.nome}" required
+                                   title="Não utilize caracteres e números neste campo">
+
+                            <!-- Sobrenome -->
+                            <input type="text" class="ant-input" id="sobrenome-cadastro" name="sobrenome" placeholder="Sobrenome"
+                                   pattern="[A-Za-zÀ-ÿ\s]+" th:value="${usuario.sobrenome}" required
+                                   title="Não utilize caracteres e números neste campo">
+                        </div>
+
+                        <div class="div-input-editar">
+                            <!-- Telefone -->
+                            <input type="tel" class="ant-input" id="telefone-cadastro" onkeyup="formatarTelefone(this)" name="telefone"
+                                   placeholder="Telefone" maxlength="11" minlength="11" th:value="${usuario.telefone}" required
+                                   title="Número inválido">
+
+                            <!-- E-mail -->
+                            <input type="email" class="ant-input" id="email-cadastro" name="email" placeholder="E-mail"
+                                   pattern="^(?!.*\.\.)([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})$" th:value="${usuario.email}" required
+                                   title="E-mail inválido">
+                        </div>
+
+                        <div class="div-input-editar">
+                            <!-- Nova Senha -->
+                            <input type="password" class="ant-input" id="" name="password"
+                                   placeholder="Nova Senha" pattern=".{8,}" required
+                                   title="A senha deve ter pelo menos 8 caracteres">
+
+                            <!-- Repetir Nova Senha -->
+                            <input type="password" class="ant-input" id="repetir-senha" name="confirmPassword"
+                                   placeholder="Repetir Nova Senha" pattern=".{8,}" required
+                                   title="A senha deve ter pelo menos 8 caracteres">
+                        </div>
+
+                        <div class="div-btn-editar">
+                            <button class="btn-excluir-perfil" type="button" onclick="openModalExcluirConta()">Excluir Conta</button>
+                            <button class="btn-salvar-perfil" type="submit">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- FIM MODAL EDITAR PERFIL -->
+
+    <!-- INICIO MODAL EXCLUIR PERFIL -->
+    <section>
+        <div id="excluirContaModal" class="modal-excluir-conta">
+            <div class="modal-excluir-conta-content">
+                <span class="close-excluir-conta" onclick="closeModalExcluirConta()">&times;</span>
+                <form id="excluirContaForm" action="/excluirConta" method="POST">
+
+                    <div class="div-excluir-conta">
+                        <h2>Excluir Conta</h2>
+
+                        <div class="div-input-excluir">
+                            <input type="password" class="ant-input" name="password" id="inputPassword" pattern=".{8,}" required
+                                   title="A senha deve ter pelo menos 8 caracteres">
+                        </div>
+
+                        <button class="btn-excluir-perfil" type="submit" onclick="confirmarExclusao()">Excluir Conta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- FIM MODAL EXCLUIR PERFIL -->
 
     <br> <br>
     <br> <br>
@@ -162,5 +282,6 @@
     </div>
 
     <script src="/static/js/index.js"></script>
+    <script src="/static/js/logado.js"></script>
 </body>
 </html>

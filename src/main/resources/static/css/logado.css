@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html h2 {
+    color: white;
+}
+
+/* INICIO MODAL PERFIL */
+/* O Modal (inicialmente escondido) */
+.modal-perfil {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-perfil-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 35%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.div-perfil {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+.div-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 55%;
+}
+
+.div-avatar-contato {
+    display: flex;
+    gap: 50px;
+}
+
+.div-info {
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+}
+
+.info-contato {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-steam {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.fa-brands.fa-steam {
+    font-size: 30px;
+}
+
+.fa-solid.fa-exclamation {
+    color: white;
+    font-size: 15px;
+    background-color: rgb(246, 255, 0);
+    color: black;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.fa-solid.fa-exclamation:hover {
+    filter: brightness(0.6);
+}
+
+.avatar {
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+    line-height: 38px;
+    border-radius: 50%;
+}
+
+.editar-perfil {
+    margin-right: 10px;
+    width: 110px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.editar-perfil:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.div-footer-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.div-data {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.close-perfil {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-perfil:hover,
+.close-perfil:focus {
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL PERFIL */
+
+/* INICIO MODAL EDITAR PERFIL */
+
+.modal-editar-perfil {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-editar-perfil-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 49%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.div-editar-perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.div-input-editar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-editar-perfil h2 {
+    color: white;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.div-editar-perfil input {
+    width: 300px;
+    margin: 10px;
+}
+
+.ant-input::placeholder {
+    color: #666;
+}
+
+.div-btn-editar {
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+}
+
+.btn-excluir-perfil {
+    margin-top: 10px;
+    width: 120px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-excluir-perfil:hover {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+.btn-salvar-perfil {
+    margin-top: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-salvar-perfil:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.close-editar-perfil {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-editar-perfil:hover,
+.close-editar-perfil:focus{
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL EDITAR PERFIL */
+
+/* INICIO MODAL EXCLUIR CONTA */
+.modal-excluir-conta {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-excluir-conta-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 25%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.div-excluir-conta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.modal-excluir-conta h2 {
+    color: white;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.div-input-excluir {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.close-excluir-conta {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-excluir-conta:hover,
+.close-excluir-conta:focus{
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL EXCLUIR CONTA */
