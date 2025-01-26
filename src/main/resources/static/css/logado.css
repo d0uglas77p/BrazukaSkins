@@ -14,9 +14,6 @@ html {
     scroll-behavior: smooth;
 }
 
-html h2 {
-    color: white;
-}
 
 /* INICIO MODAL PERFIL */
 /* O Modal (inicialmente escondido) */
@@ -33,7 +30,7 @@ html h2 {
 
 .modal-perfil-content {
     background-color: #232323;
-    margin: 190px auto;
+    margin: 180px auto;
     width: 35%;
     border-radius: 20px;
     padding: 20px;
@@ -41,8 +38,10 @@ html h2 {
 
 .div-perfil {
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    margin-top: 8px;
+    width: 100%
+    margin-top: 5px;
     margin-left: 5px;
 }
 
@@ -50,8 +49,7 @@ html h2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 55%;
+    justify-content: center;
 }
 
 .div-avatar-contato {
@@ -61,7 +59,7 @@ html h2 {
 
 .div-info {
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
     justify-content: space-between;
 }
 
@@ -129,14 +127,14 @@ html h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .div-data {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    margin-top: 5px;
+    margin-top: 20px;
     margin-left: 50px;
 }
 
@@ -154,7 +152,6 @@ html h2 {
 /* FIM MODAL PERFIL */
 
 /* INICIO MODAL EDITAR PERFIL */
-
 .modal-editar-perfil {
     display: none;
     position: fixed;

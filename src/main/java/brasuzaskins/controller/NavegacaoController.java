@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.format.DateTimeFormatter;
+
 @Controller
 public class NavegacaoController {
 
@@ -43,6 +45,13 @@ public class NavegacaoController {
         }
 
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+        if (usuario != null && usuario.getDataRegistro() != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String dataFormatada = usuario.getDataRegistro().format(formatter);
+            model.addAttribute("dataRegistroFormatada", dataFormatada);
+        }
+
         model.addAttribute("usuario", usuario);
 
         return "logado";

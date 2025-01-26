@@ -96,27 +96,29 @@
                 <form action="" method="POST">
                     <div class="div-perfil">
                         <div class="div-header">
-                            <i class="fa-solid fa-exclamation"></i>
-                            <h2>Perfil</h2>
+                            <h2 style="font-size: 22px; font-weight: bold; color: white;">Perfil</h2>
                         </div>
+
                         <div class="div-info">
                             <div class="div-avatar-contato">
                                 <div class="avatar"></div>
                                 <div class="info-contato">
-                                    <h2>Zank</h2>
-                                    <p>Douglas Pardim Ferreira</p>
-                                    <p>11977430273</p>
+                                    <h2 style="color: white;">Zank</h2>
+                                    <span style="color: white;" th:text="${usuario.nome + ' ' + usuario.sobrenome}"></span>
+                                    <span style="color: white;" th:text="${usuario.telefone}"></span>
                                 </div>
                             </div>
                             <div class="info-steam">
                                 <i class="fa-brands fa-steam"></i>
                             </div>
                         </div>
+
                         <div class="div-footer-edit">
                             <button class="editar-perfil" type="button" onclick="openModalEditarPerfil()">Editar Perfil</button>
+
                             <div class="div-data">
-                                <p>Registro:</p>
-                                <p>01/05/2023</p>
+                                <p style="font-size: 12px; color: #666; font-style: italic;">Registro:</p>
+                                <span style="font-size: 12px; color: #666; font-style: italic;" th:text="${usuario.dataRegistro}"></span>
                             </div>
                         </div>
                     </div>
