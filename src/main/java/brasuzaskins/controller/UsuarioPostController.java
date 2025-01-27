@@ -170,10 +170,9 @@ public class UsuarioPostController {
                 return "redirect:/index";
             }
 
-            usuarioLogado.setLinkSteam(linkSteam);
-            usuarioService.atualizarPerfil(usuarioLogado, usuarioLogado);
-            session.setAttribute("usuarioLogado", usuarioLogado);
+            usuarioService.vincularLinkSteam(usuarioLogado, linkSteam);
 
+            session.setAttribute("usuarioLogado", usuarioLogado);
             redirectAttributes.addFlashAttribute("successMessage", "Conta Steam vinculada com sucesso!");
             return "redirect:/logado";
 
@@ -182,4 +181,5 @@ public class UsuarioPostController {
             return "redirect:/logado";
         }
     }
+
 }

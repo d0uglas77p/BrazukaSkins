@@ -154,18 +154,15 @@ public class UsuarioService {
         usuarioLogado.setEmail(usuarioAtualizado.getEmail());
 
         if (usuarioAtualizado.getPassword() != null && !usuarioAtualizado.getPassword().isEmpty()) {
-            usuarioLogado.setPassword(BCrypt.hashpw(usuarioAtualizado.getPassword(), BCrypt.gensalt()));
-        }
-
-        if (usuarioAtualizado.getLinkSteam() != null && !usuarioAtualizado.getLinkSteam().isEmpty()) {
-            if (!usuarioAtualizado.getLinkSteam().startsWith("https://steamcommunity.com/")) {
-                throw new IllegalArgumentException("O link da Steam deve ser um perfil público válido.");
+            if (usuarioAtualizado.getPassword().length() < 8) {
+                throw new IllegalArgumentException("A senha deve ter pelo menos 8 caracteres.");
             }
-            usuarioLogado.setLinkSteam(usuarioAtualizado.getLinkSteam());
+            usuarioLogado.setPassword(BCrypt.hashpw(usuarioAtualizado.getPassword(), BCrypt.gensalt()));
         }
 
         return usuarioRepository.save(usuarioLogado);
     }
+
 
     @Transactional
     public void excluirUsuario(Usuario usuario) {
@@ -176,5 +173,22 @@ public class UsuarioService {
         }
 
         usuarioRepository.delete(usuarioExistente);
+    }
+
+    public Usuario vincularLinkSteam(Usuario usuarioLogado, String linkSteam) {
+        if (!linkSteam.startsWith("https://steamcommunity.com/")) {
+            throw new IllegalArgumentException("O Link da Steam deve ser um perfil público válido.");
+        }
+
+        if (isLinkSteamCadastrado(linkSteam)) {
+            throw new IllegalArgumentException("Este Link Steam já está vinculado a outra conta.");
+        }
+
+        usuarioLogado.setLinkSteam(linkSteam);
+        return usuarioRepository.save(usuarioLogado);
+    }
+
+    public boolean isLinkSteamCadastrado(String linkSteam) {
+        return usuarioRepository.existsByLinkSteam(linkSteam);
     }
 }

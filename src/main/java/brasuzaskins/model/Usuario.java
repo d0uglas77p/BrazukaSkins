@@ -42,7 +42,7 @@ public class Usuario {
     private String tokenRecuperacao;
     private LocalDateTime tokenExpiracao;
 
-    @Column
+    @Column(unique = true)
     private String linkSteam;
 
     public Long getId() {
