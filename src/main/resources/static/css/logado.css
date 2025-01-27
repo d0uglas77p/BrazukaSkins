@@ -74,6 +74,18 @@ html {
     margin-top: 5px;
 }
 
+.info-steam .icone-steam {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.info-steam .icone-steam:hover {
+    filter: grayscale(0%);
+}
+
 .fa-brands.fa-steam {
     font-size: 30px;
 }
@@ -150,6 +162,75 @@ html {
     cursor: pointer;
 }
 /* FIM MODAL PERFIL */
+
+/* INICIO MODAL LINK STEAM */
+.modal-link-steam {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-link-steam-content {
+    background-color: #232323;
+    margin: 190px auto;
+    width: 33%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.div-link-steam {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.div-link-steam h2 {
+    color: white;
+    font-weight: bold;
+}
+
+.div-link-steam input {
+    width: 400px;
+}
+
+.btn-vincular-steam {
+    margin-top: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    color: white;
+    background-color: #00ff00;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s ease;
+}
+
+.btn-vincular-steam:hover {
+    background-color: #009900;
+    border-color: #005e00;
+}
+
+.close-link-steam {
+    color: white;
+    float: right;
+    font-size: 30px;
+}
+
+.close-link-steam:hover,
+.close-link-steam:focus{
+    color: black;
+    cursor: pointer;
+}
+/* FIM MODAL LINK STEAM */
 
 /* INICIO MODAL EDITAR PERFIL */
 .modal-editar-perfil {

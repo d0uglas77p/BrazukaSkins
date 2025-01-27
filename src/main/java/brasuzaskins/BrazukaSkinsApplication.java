@@ -10,5 +10,4 @@ public class BrazukaSkinsApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(BrazukaSkinsApplication.class, args);
 	}
-
 }

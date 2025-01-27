@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.format.DateTimeFormatter;
 
 @Controller
-public class NavegacaoController {
+public class UsuarioGetController {
 
     @Autowired
     private UsuarioService usuarioService;
@@ -23,10 +23,8 @@ public class NavegacaoController {
         return "index";
     }
 
-    // MAPEAMENTO DA PAGINA DE RECUPERAÇÃO QUE É RECEBIDO VIA EMAIL DO LINK DE RECUPERAÇÃO
     @GetMapping("/recuperarSenha")
     public String mostrarFormularioRecuperacao(@RequestParam("token") String token, Model model) {
-        // VERIFICA SE O TOKEN É VALIDO
         if (usuarioService.isTokenValido(token)) {
             model.addAttribute("token", token);  // PASSA O TOKEN PARA O THYMELEAF
             return "recuperarSenha";
@@ -53,18 +51,14 @@ public class NavegacaoController {
         }
 
         model.addAttribute("usuario", usuario);
-
         return "logado";
     }
 
-    // MAPEAMENTO PARA REALIZAR O LOGOUT DO USUÁRIO
     @GetMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
-        // INVALIDA A SESSÃO DO USUÁRIO (FAZENDO O LOGOUT)
         session.invalidate();
 
         redirectAttributes.addFlashAttribute("successMessage", "Você saiu da sua conta.");
         return "redirect:/index";
     }
-
 }

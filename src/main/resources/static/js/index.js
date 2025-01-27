@@ -1,4 +1,3 @@
-/* MENU ESQUERDO */
 document.getElementById("menu-btn").onclick = function() {
     var sidebar = document.getElementById("sidebar");
     
@@ -13,10 +12,7 @@ document.getElementById("sidebar").onmouseleave = function() {
     var sidebar = document.getElementById("sidebar");
     sidebar.style.width = "0";  
 };
-/* MENU ESQUERDO */
 
-
-/* MENU DIREITO */
 document.getElementById("login-menu-btn").onclick = function () {
     var sidebarLogin = document.getElementById("sidebar-login");
     if (sidebarLogin.style.width === "180px") {
@@ -30,10 +26,7 @@ document.getElementById("sidebar-login").onmouseleave = function () {
     var sidebarLogin = document.getElementById("sidebar-login");
     sidebarLogin.style.width = "0"; 
 };
-/* MENU DIREITO */
 
-
-/* MODAL LOGIN */
 function openModal() {
     document.getElementById("loginModal").style.display = "block";
 }
@@ -41,9 +34,7 @@ function openModal() {
 function closeModal() {
     document.getElementById("loginModal").style.display = "none";
 }
-/* MODAL LOGIN */
 
-/* MODAL RECUPERAR */
 function openModalRecuperar() {
     closeModal();
     document.getElementById("recuperarModal").style.display = "block";
@@ -52,9 +43,7 @@ function openModalRecuperar() {
 function closeModalRecuperar() {
     document.getElementById("recuperarModal").style.display = "none";
 }
-/* MODAL RECUPERAR */
 
-/* MODAL CADASTRO */
 function openModalCadastro() {
     document.getElementById("cadastroModal").style.display = "block";
 }
@@ -62,10 +51,7 @@ function openModalCadastro() {
 function closeModalCadastro() {
     document.getElementById("cadastroModal").style.display = "none";
 }
-/* MODAL CADASTRO */
 
-
-/* FECHAR OS MODAIS */
 window.onclick = function (event) {
     const loginModal = document.getElementById("loginModal");
     const recuperarModal = document.getElementById("recuperarModal");
@@ -83,9 +69,7 @@ window.onclick = function (event) {
         closeModalCadastro();
     }
 };
-/* FECHAR OS MODAIS */
 
-/* FORMATAR MASCARA DO TELEFONE */
 function formatarTelefone(input) {
     var telefone = input.value.replace(/\D/g, '');
     telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
@@ -101,4 +85,3 @@ document.getElementById("telefone-cadastro").addEventListener("input", function 
         this.setCustomValidity("");
     }
 });
-/* FORMATAR MASCARA DO TELEFONE */

@@ -42,6 +42,9 @@ public class Usuario {
     private String tokenRecuperacao;
     private LocalDateTime tokenExpiracao;
 
+    @Column
+    private String linkSteam;
+
     public Long getId() {
         return id;
     }
@@ -120,5 +123,13 @@ public class Usuario {
 
     public void setTokenExpiracao(LocalDateTime tokenExpiracao) {
         this.tokenExpiracao = tokenExpiracao;
+    }
+
+    public String getLinkSteam() {
+        return linkSteam;
+    }
+
+    public void setLinkSteam(String linkSteam) {
+        this.linkSteam = linkSteam;
     }
 }

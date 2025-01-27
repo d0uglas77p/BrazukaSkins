@@ -18,7 +18,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Usuario findByEmail(String email);
 
-    // METODO PARA SALVAR O TOKEN DE RECUPERAÇÃO DE SENHA NO BANCO DE DADOS
     @Modifying
     @Query("UPDATE Usuario u SET u.tokenRecuperacao = :token, u.tokenExpiracao = :tokenExpiracao WHERE u.email = :email")
     void salvarTokenRecuperacao(
@@ -27,7 +26,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             @Param("tokenExpiracao") LocalDateTime tokenExpiracao
     );
 
-    // METODO PARA BUSCAR UM USUARIO PELO TOKEN DE RECUPERAÇÃO, VERIFICANDO SE O TOKEN É VÁLIDO
     @Query("SELECT u FROM Usuario u WHERE u.tokenRecuperacao = :token AND u.tokenExpiracao > :dataAtual")
     Usuario findByTokenRecuperacao(
             @Param("token") String token,

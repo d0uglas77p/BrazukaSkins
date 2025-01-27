@@ -6,6 +6,15 @@ function closeModalPerfil() {
     document.getElementById("perfilModal").style.display = "none";
 }
 
+function openModalLinkSteam() {
+    closeModalPerfil();
+    document.getElementById("linkSteamModal").style.display = "block";
+}
+
+function closeModalLinkSteam() {
+    document.getElementById("linkSteamModal").style.display = "none";
+}
+
 function openModalEditarPerfil() {
     closeModalPerfil();
     document.getElementById("editarPerfilModal").style.display = "block";
@@ -26,6 +35,7 @@ function closeModalExcluirConta() {
 
 window.onclick = function (event) {
     const perfilModal = document.getElementById("perfilModal");
+    const linkSteamModal = document.getElementById("linkSteamModal");
     const editarPerfilModal = document.getElementById("editarPerfilModal");
     const excluirContaModal = document.getElementById("excluirContaModal");
 
@@ -33,11 +43,15 @@ window.onclick = function (event) {
         closeModalPerfil();
     }
 
+    if (event.target === linkSteamModal) {
+            closeModalLinkSteam();
+        }
+
     if (event.target === editarPerfilModal) {
         closeModalEditarPerfil();
     }
 
     if (event.target === excluirContaModal) {
-            closeModalExcluirConta();
-        }
+        closeModalExcluirConta();
+    }
 };

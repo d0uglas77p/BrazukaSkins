@@ -20,46 +20,35 @@ public class UsuarioService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    // METODO PARA CADASTRAR O USUARIO
     public Usuario cadastrarUsuario(Usuario usuario, String confirmarSenha) {
 
-        // RECEBE A EXCEÇÃO SE AS SENHAS NÃO FOREM IGUAIS
         if (usuario.getPassword() == null || !usuario.getPassword().equals(confirmarSenha)) {
             throw new ConfirmarSenhasException("As senhas não coincidem");
         }
 
-        // RECEBE A EXCEÇÃO SE O EMAIL JÁ EXISTE NO CADASTRO
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new EmailJaCadastradoException("E-mail já cadastrado");
         }
 
-        // RECEBE A EXCEÇÃO SE O TELEFONE JÁ EXISTE NO CADASTRO
         if (usuarioRepository.existsByTelefone(usuario.getTelefone())) {
             throw new TelefoneJaCadastradoException("Número de telefone já cadastrado");
         }
 
-        // CRIPTOGRAFA A SENHA
         String senhaCriptografada = BCrypt.hashpw(usuario.getPassword(), BCrypt.gensalt());
         usuario.setPassword(senhaCriptografada);
 
-        // SALVA O USUARIO
         return usuarioRepository.save(usuario);
     }
 
-    // METODO PARA VERIFICAR SE O EMAIL JÁ ESTÁ CADASTRADO
     public boolean isEmailCadastrado(String email) {
         return usuarioRepository.existsByEmail(email);
     }
 
-    // METODO PARA ENVIAR E-MAIL DE RECUPERAÇÃO
     public void enviarEmailRecuperacao(String email, String mensagem) {
-
-        // SE O EMAIL O EMAIL NÃO ESTIVER CADASTRADO
         if (!isEmailCadastrado(email)) {
             throw new EmailNaoCadastradoException("E-mail não cadastrado");
         }
 
-        // ENVIA O EMAIL
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(email);
         mailMessage.setSubject("Recuperação de Senha");
@@ -67,115 +56,93 @@ public class UsuarioService {
         javaMailSender.send(mailMessage);
     }
 
-    // EXCEPTION SE O EMAIL JÁ ESTA CADASTRADO PARA CADASTRO
     public static class EmailJaCadastradoException extends RuntimeException {
         public EmailJaCadastradoException(String message) {
             super(message);
         }
     }
 
-    // EXCEPTION SE O TELEFONE JÁ ESTA CADASTRADO
     public static class TelefoneJaCadastradoException extends RuntimeException {
         public TelefoneJaCadastradoException(String message) {
             super(message);
         }
     }
 
-    // EXCEPTION SE AS SENHAS NÃO SÃO IGUAIS
     public static class ConfirmarSenhasException extends RuntimeException {
         public ConfirmarSenhasException(String message) {
             super(message);
         }
     }
 
-    // EXCEPTION SE O EMAIL NÃO ESTA CADASTRADO NA RECUPERAÇÃO DE SENHA
     public static class EmailNaoCadastradoException extends RuntimeException {
         public EmailNaoCadastradoException(String message) {
             super(message);
         }
     }
 
-    // METODO PARA GERAR O TOKEN DE RECUPERAÇÃO
     @Transactional
     public String gerarTokenRecuperacao(String email) {
-        String token = UUID.randomUUID().toString(); // TOKEN
+        String token = UUID.randomUUID().toString();
 
-        LocalDateTime dataExpiracao = LocalDateTime.now().plusHours(1); // EXPERIÇÃO DO TOKEN
+        LocalDateTime dataExpiracao = LocalDateTime.now().plusHours(1);
 
-        usuarioRepository.salvarTokenRecuperacao(email, token, dataExpiracao); // SALVA O TOKEN DO USUARIO
+        usuarioRepository.salvarTokenRecuperacao(email, token, dataExpiracao);
 
         return token;
     }
 
-    // METODO PARA VERIFICAR SE O TOKEN É VÁLIDO
     public boolean isTokenValido(String token) {
         LocalDateTime agora = LocalDateTime.now();
         Usuario usuario = usuarioRepository.findByTokenRecuperacao(token, agora);
         return usuario != null;
     }
 
-    // METODO PARA ATUALIZAR A SENHA DO USUÁRIO APÓS A RECUPERAÇÃO
     @Transactional
     public void atualizarSenha(String token, String novaSenha) {
-
-        // CONDIÇÃO QUE VERIFICA SE A NOVA SENHA É MENOR QUE 8
         if (novaSenha.length() < 8) {
             throw new IllegalArgumentException("A senha deve ter pelo menos 8 caracteres.");
         }
 
         Usuario usuario = usuarioRepository.findByTokenRecuperacao(token, LocalDateTime.now());
 
-        // SE A SENHA O TOKEN DO USUARIO FOR DIFERENTE DE NULL
         if (usuario != null) {
-            // CRIPTOGRAFA A NOVA SENHA
             usuario.setPassword(BCrypt.hashpw(novaSenha, BCrypt.gensalt()));
             usuario.setTokenRecuperacao(null);
             usuario.setTokenExpiracao(null);
 
-            // SALVA
             usuarioRepository.save(usuario);
 
-        // LANÇA A EXCEPTION DO TOKEN INVALIDO
         } else {
             throw new TokenExpiradoException("O token expirou ou é inválido.");
         }
     }
 
-    // EXCEÇÃO LANÇADA QUANDO O TOKEN EXPIRA OU É INVÁLIDO
     public static class TokenExpiradoException extends RuntimeException {
         public TokenExpiradoException(String message) {
             super(message);
         }
     }
 
-    // METODO PARA AUTENTICAR O USUÁRIO
     public Usuario autenticarUsuario(String email, String senha) {
-
-        // BUSCA O USUÁRIO PELO EMAIL
         Usuario usuario = usuarioRepository.findByEmail(email);
 
-        // SE O USUÁRIO NÃO EXISTIR
         if (usuario == null) {
             throw new AutenticacaoException("E-mail ou senha incorretos");
         }
 
-        // VERIFICA SE A SENHA CORRESPONDE À SENHA ARMAZENADA NO BANCO
         if (!BCrypt.checkpw(senha, usuario.getPassword())) {
             throw new AutenticacaoException("E-mail ou senha incorretos");
         }
 
-        // RETORNA O USUÁRIO AUTENTICADO
         return usuario;
     }
 
-    // EXCEÇÃO PARA ERROS DE AUTENTICAÇÃO
     public static class AutenticacaoException extends RuntimeException {
         public AutenticacaoException(String message) {
             super(message);
         }
     }
 
-    @Transactional
     public Usuario atualizarPerfil(Usuario usuarioAtualizado, Usuario usuarioLogado) {
         if (!usuarioLogado.getId().equals(usuarioAtualizado.getId())) {
             throw new IllegalArgumentException("Usuário não autorizado a alterar esses dados.");
@@ -188,6 +155,13 @@ public class UsuarioService {
 
         if (usuarioAtualizado.getPassword() != null && !usuarioAtualizado.getPassword().isEmpty()) {
             usuarioLogado.setPassword(BCrypt.hashpw(usuarioAtualizado.getPassword(), BCrypt.gensalt()));
+        }
+
+        if (usuarioAtualizado.getLinkSteam() != null && !usuarioAtualizado.getLinkSteam().isEmpty()) {
+            if (!usuarioAtualizado.getLinkSteam().startsWith("https://steamcommunity.com/")) {
+                throw new IllegalArgumentException("O link da Steam deve ser um perfil público válido.");
+            }
+            usuarioLogado.setLinkSteam(usuarioAtualizado.getLinkSteam());
         }
 
         return usuarioRepository.save(usuarioLogado);
